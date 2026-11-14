@@ -1,0 +1,49 @@
+---
+title: IdPlatformKit
+description: A reference Internal Developer Platform you can run on your laptop. A form in the portal becomes an isolated namespace, its own secrets space and a database, through a pull request, Argo CD and Crossplane.
+template: splash
+hero:
+  title: Ask for an environment in ten lines of YAML.
+---
+
+import Flow from '../../components/Flow.astro';
+
+## From a form to running infrastructure
+
+Nobody opens a ticket and nobody runs `kubectl apply`. Every change goes through Git, under the developer's own name.
+
+<Flow />
+
+## Watch it work
+
+A `Tenant` with its secrets space, created and checked on a local kind cluster. Nothing is sped up.
+
+<video controls preload="none" playsinline poster="/demos/try-tenant-poster.png" width="1280" height="900" class="demo-video">
+  <source src="/demos/try-tenant.webm" type="video/webm" />
+  <a href="/demos/try-tenant.gif">Watch the recording (GIF)</a>
+</video>
+
+The still shows the end of the run: the Tenant and its resources, then `db-credentials/password in Kubernetes: from-openbao-demo-team`. Also available [as a GIF](/demos/try-tenant.gif).
+
+More in [Demos](/demos/tenant/).
+
+## What you'll find here
+
+- **[Run it on your laptop](/start/run-locally/).** One command builds the whole platform on kind, with no cloud account.
+- **[Architecture](/architecture/overview/).** How the portal, Git, Argo CD and Crossplane fit together, and what each composition creates.
+- **[Design decisions](/architecture/decisions/).** Why Crossplane v2, OpenBao rather than Vault, Envoy Gateway, a local CA. Each with the alternative that was turned down.
+- **[Roadmap](/roadmap/).** What's done, and what comes next: single sign-on, guardrails, multi-cluster, AI platform services.
+
+## Written from what actually happened
+
+Every page describes what was run and observed on a real cluster, wrong first attempts included. One example, from building the `PostgresDatabase` composition:
+
+> All tenants share one Postgres server. The first version named databases after the claim only, so a team creating a database with the same name in its own namespace silently adopted another team's database, and deleting it dropped theirs. Names are now `<namespace>_<name>`, and the same scenario leaves the victim's data intact.
+
+[Read the full story](/architecture/postgres-database/#server-side-names-a-security-fix).
+
+## Status
+
+IdPlatformKit is a reference implementation, built to be read, run and reused. Its backing services (Postgres, OpenBao) run in single-replica dev mode with fixed local credentials. **It isn't production-ready, and doesn't pretend to be.** The roadmap includes a prod-like profile.
+
+Built by Anas Touil, Platform Engineer (CKA, CKAD).
