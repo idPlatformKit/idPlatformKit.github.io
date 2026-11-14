@@ -53,6 +53,7 @@ export default defineConfig({
 					items: [{ label: 'A tenant in seconds', slug: 'demos/tenant' }],
 				},
 				{ label: 'Roadmap', slug: 'roadmap' },
+				{ label: 'Writing', slug: 'writing' },
 			],
 		}),
 	],
