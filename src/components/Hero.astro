@@ -1,0 +1,286 @@
+---
+/*
+ * Landing hero. Replaces Starlight's Hero on pages with `hero` frontmatter
+ * (only the home page). Left: what IdPlatformKit is. Right: the real Tenant
+ * claim from the Orchestrator README and what Crossplane composes from it,
+ * revealed in function-sequencer's actual creation order.
+ */
+import { LinkButton } from '@astrojs/starlight/components';
+
+// Grouped by creation stage, as ordered by function-sequencer in
+// Orchestrator/compositions/tenant (docs/compositions/tenant.md).
+const stages = [
+	[{ kind: 'Namespace', name: 'demo-team' }],
+	[
+		{ kind: 'ResourceQuota', name: '4 CPU, 8Gi, 20 pods' },
+		{ kind: 'LimitRange', name: 'container defaults' },
+		{ kind: 'RoleBinding', name: 'edit → demo-team-engineers' },
+		{ kind: 'NetworkPolicy', name: 'default deny' },
+		{ kind: 'ServiceAccount', name: 'demo-app' },
+		{ kind: 'OpenBao namespace', name: 'demo-team/' },
+	],
+	[
+		{ kind: 'KV mount', name: 'secret/' },
+		{ kind: 'Policy', name: 'secret/data/*' },
+		{ kind: 'Kubernetes auth', name: 'backend' },
+	],
+	[
+		{ kind: 'Auth config', name: 'cluster API' },
+		{ kind: 'Auth role', name: 'only demo-app' },
+	],
+	[{ kind: 'SecretStore', name: 'openbao' }],
+];
+---
+
+<section class="idpk-hero" aria-labelledby="idpk-hero-title">
+	<div class="pitch">
+		<h1 id="idpk-hero-title">Ask for an environment in ten lines of YAML.</h1>
+		<p class="lede">
+			IdPlatformKit is a reference Internal Developer Platform that runs on your laptop. A team
+			fills in a form in the portal. A pull request, Argo CD and Crossplane turn it into an
+			isolated namespace, its own secrets space and a database.
+		</p>
+		<div class="actions">
+			<LinkButton href="/start/run-locally/">Run it on your laptop</LinkButton>
+			<LinkButton href="/architecture/overview/" variant="secondary">See how it's built</LinkButton>
+		</div>
+		<p class="stack">
+			Backstage, Argo CD, Crossplane v2, OpenBao, External Secrets Operator, Envoy Gateway,
+			cert-manager. Open source, Apache 2.0.
+		</p>
+	</div>
+
+	<figure class="render" aria-label="A Tenant claim and the resources Crossplane creates from it">
+		<div class="claim">
+			<p class="pane-title">tenants/demo-team.yaml</p>
+			<pre><code><span class="k">apiVersion:</span> platform.idplatformkit.io/v1alpha1
+<span class="k">kind:</span> Tenant
+<span class="k">metadata:</span>
+  <span class="k">name:</span> demo-team
+<span class="k">spec:</span>
+  <span class="k">ownerGroup:</span> demo-team-engineers
+  <span class="k">vault:</span>
+    <span class="k">enabled:</span> true
+    <span class="k">serviceAccountName:</span> demo-app</code></pre>
+		</div>
+		<div class="composed">
+			<p class="pane-title">What Crossplane creates, in order</p>
+			<ol class="stages">
+				{
+					stages.map((stage, i) => (
+						<li class="stage" style={`--stage: ${i}`}>
+							<ul>
+								{stage.map((r) => (
+									<li>
+										<span class="kind">{r.kind}</span>
+										<span class="name">{r.name}</span>
+										<span class="ready">Ready</span>
+									</li>
+								))}
+							</ul>
+						</li>
+					))
+				}
+			</ol>
+			<figcaption>
+				Ready in 3 to 7 seconds on kind, over three runs. Another team's ServiceAccount asking
+				for these secrets is refused by OpenBao itself.
+			</figcaption>
+		</div>
+	</figure>
+</section>
+
+<style>
+	.idpk-hero {
+		padding-block: 2.5rem 1rem;
+	}
+	@media (min-width: 64rem) {
+		.idpk-hero {
+			padding-block: 4rem 2rem;
+		}
+	}
+
+	/* Headline left, lede and actions right on wide screens. */
+	.pitch {
+		display: grid;
+		gap: 1.25rem 3.5rem;
+		align-items: end;
+	}
+	@media (min-width: 64rem) {
+		.pitch {
+			grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+			grid-template-areas:
+				'title lede'
+				'title actions'
+				'title stack';
+			align-items: start;
+		}
+		h1 { grid-area: title; }
+		.lede { grid-area: lede; }
+		.actions { grid-area: actions; }
+		.stack { grid-area: stack; }
+	}
+
+	h1 {
+		font-size: clamp(2.2rem, 1.4rem + 3.4vw, 4rem);
+		line-height: 1.02;
+		letter-spacing: -0.035em;
+		font-weight: 720;
+		color: var(--sl-color-white);
+		max-width: 13ch;
+		margin: 0;
+	}
+	.lede {
+		font-size: 1.15rem;
+		line-height: 1.6;
+		color: var(--sl-color-gray-2);
+		max-width: 36rem;
+		margin: 0;
+	}
+	@media (min-width: 64rem) {
+		.lede { margin-top: 0.6rem; }
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 0.5rem 0 0;
+	}
+	.stack {
+		margin: 0.25rem 0 0;
+		font-size: 0.9rem;
+		color: var(--sl-color-gray-3);
+		max-width: 36rem;
+	}
+
+	/* The render, full width: claim on the left, composed resources right. */
+	.render {
+		margin: 3rem 0 0;
+		min-width: 0;
+		display: grid;
+		border: 1px solid var(--idpk-line);
+		border-radius: 0.6rem;
+		overflow: hidden;
+		background: var(--sl-color-black);
+	}
+	@media (min-width: 52rem) {
+		.render {
+			grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+		}
+	}
+	.claim,
+	.composed {
+		min-width: 0;
+	}
+	.claim {
+		background: var(--idpk-code-bg);
+		border-bottom: 1px solid var(--idpk-line);
+	}
+	@media (min-width: 52rem) {
+		.claim {
+			border-bottom: 0;
+			border-right: 1px solid var(--idpk-line);
+		}
+	}
+	.pane-title {
+		margin: 0;
+		padding: 0.7rem 1.25rem;
+		font-size: 0.8rem;
+		color: var(--sl-color-gray-3);
+		border-bottom: 1px solid var(--idpk-line);
+	}
+	.claim pre {
+		margin: 0;
+		padding: 1.25rem;
+		background: transparent;
+		border: 0;
+		font-size: 0.85rem;
+		line-height: 1.75;
+		overflow-x: auto;
+	}
+	.claim .k {
+		color: var(--sl-color-accent);
+	}
+
+	.stages,
+	.stages ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.stages {
+		padding: 0.4rem 0;
+	}
+	.stage + .stage {
+		border-top: 1px dashed var(--idpk-line);
+	}
+	.stage li {
+		display: grid;
+		grid-template-columns: 9.5rem minmax(0, 1fr) auto;
+		gap: 1rem;
+		align-items: baseline;
+		padding: 0.28rem 1.25rem;
+		font-size: 0.85rem;
+		margin: 0;
+	}
+	.kind {
+		color: var(--sl-color-white);
+		font-weight: 600;
+	}
+	.name {
+		font-family: var(--sl-font-mono);
+		font-size: 0.78rem;
+		color: var(--sl-color-gray-3);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.ready {
+		font-family: var(--sl-font-mono);
+		font-size: 0.76rem;
+		font-weight: 600;
+		color: var(--idpk-ready);
+	}
+	figcaption {
+		padding: 0.8rem 1.25rem 1rem;
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: var(--sl-color-gray-3);
+		border-top: 1px solid var(--idpk-line);
+	}
+
+	/* The one orchestrated moment: stages appear in creation order. */
+	@media (prefers-reduced-motion: no-preference) {
+		.stage {
+			animation: compose 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+			animation-delay: calc(350ms + var(--stage) * 420ms);
+		}
+		.stage .ready {
+			animation: settle 300ms ease-out both;
+			animation-delay: calc(650ms + var(--stage) * 420ms);
+		}
+	}
+	@keyframes compose {
+		from {
+			opacity: 0;
+			transform: translateX(-0.5rem);
+		}
+	}
+	@keyframes settle {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@media (max-width: 34rem) {
+		.stage li {
+			grid-template-columns: minmax(0, 1fr) auto;
+		}
+		.name {
+			display: none;
+		}
+		.claim pre {
+			font-size: 0.78rem;
+		}
+	}
+</style>
