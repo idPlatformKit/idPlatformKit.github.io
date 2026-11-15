@@ -34,7 +34,7 @@ export default defineConfig({
 					label: 'Start here',
 					items: [
 						{ label: 'What IdPlatformKit is', slug: 'start/what-is-idpk' },
-						{ label: 'Run it on your laptop', slug: 'start/run-locally' },
+						{ label: 'Install it on your laptop', slug: 'start/run-locally' },
 					],
 				},
 				{
