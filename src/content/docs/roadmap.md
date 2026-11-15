@@ -10,6 +10,7 @@ Each milestone is a [`roadmap` issue](https://github.com/idPlatformKit/Orchestra
 - **GitOps and the first golden path.** Argo CD installs the platform from Git (app of apps), claims live in a separate repository validated in CI, the portal's New Tenant template opens the pull request, and each tenant's resources are visible in the portal.
 - **Secrets and databases.** Tenant secrets delivered as Kubernetes `Secret`s by External Secrets Operator, the New Postgres database template, and per-tenant database names on the shared server.
 - **HTTPS on kind** ([#27](https://github.com/idPlatformKit/Orchestrator/issues/27)). Gateway API with Envoy Gateway, cert-manager and a local CA, `https://<name>.127.0.0.1.nip.io` for the platform's UIs.
+- **Install on your own GitHub org** ([#45](https://github.com/idPlatformKit/Orchestrator/issues/45)). `make setup` and `make up`, with the portal running in the cluster. Verified end to end on a second org.
 
 ## Next
 
@@ -19,6 +20,8 @@ Each milestone is a [`roadmap` issue](https://github.com/idPlatformKit/Orchestra
 - **The composition library as a product**: render tests, packaging and versioned APIs ([#32](https://github.com/idPlatformKit/Orchestrator/issues/32)).
 
 ## Later
+
+- **GitLab** as an alternative Git provider ([#46](https://github.com/idPlatformKit/Orchestrator/issues/46)).
 
 - **Developer experience**: pull request previews, a fast inner loop, an `idpk` CLI ([#33](https://github.com/idPlatformKit/Orchestrator/issues/33)).
 - **Agentic development**: the platform's golden paths exposed to AI agents over MCP, and agent sandboxes ([#34](https://github.com/idPlatformKit/Orchestrator/issues/34)).

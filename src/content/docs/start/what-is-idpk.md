@@ -15,16 +15,17 @@ It's a **reference implementation**: the point is to be read, run and reused, no
 - **A view of all of it** in the portal: each tenant and database is a catalog entity, with a Kubernetes tab listing the resources behind it.
 - **HTTPS** for the platform's own UIs (OpenBao, Argo CD), with a local CA.
 
-## The three repositories
+## The repositories
 
 | Repository | Role |
 |---|---|
 | [Orchestrator](https://github.com/idPlatformKit/Orchestrator) | The platform itself: Crossplane compositions, platform services, the Argo CD bootstrap and the local kind environment |
-| [instances](https://github.com/idPlatformKit/instances) | The claims that should exist on the platform, validated in CI and synced by Argo CD |
-| [portal](https://github.com/idPlatformKit/portal) | The developer portal: Backstage with GitHub sign-in, the org's teams, Software Templates and the Kubernetes view |
+| [instances-template](https://github.com/idPlatformKit/instances-template) | The starting point of your own instances repository: the claims that should exist on your platform, validated in CI and synced by Argo CD |
+| [instances](https://github.com/idPlatformKit/instances) | The project's own demo installation |
+| [portal](https://github.com/idPlatformKit/portal) | The developer portal: Backstage with GitHub sign-in, the org's teams, Software Templates and the Kubernetes view. Runs in the cluster |
 
 ## How the docs are written
 
 Each page says what was run and what was observed, on a real kind cluster or in CI. When the first attempt was wrong, it says so and keeps the error message. A feature is marked as done only once it's implemented and tested end to end.
 
-Next: [run it on your laptop](/start/run-locally/), or read the [architecture overview](/architecture/overview/).
+Next: [install it on your laptop](/start/run-locally/), or read the [architecture overview](/architecture/overview/).
