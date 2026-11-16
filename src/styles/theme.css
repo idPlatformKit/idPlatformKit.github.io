@@ -1,13 +1,14 @@
 /*
- * IdPlatformKit theme. Colours borrow Kubernetes' own vocabulary: teal only
- * ever means "Ready", amber only "Progressing". The violet accent is for
- * links and actions.
+ * IdPlatformKit theme, from the logo: blue #2574F8, green #42D085, ink
+ * #111112. Blue is for links and actions; green only ever means "Ready",
+ * amber only "Progressing". On light backgrounds both are darkened to keep
+ * text contrast at 4.5:1 or more. The portal uses the same values.
  */
 :root {
 	--idpk-ink: #1b2433;
 	--idpk-paper: #f7f8fa;
-	--idpk-violet: #4b3fc9;
-	--idpk-ready: #0e7a6d;
+	--idpk-action: #1d63db;
+	--idpk-ready: #137a4a;
 	--idpk-progressing: #9a6412;
 	--idpk-line: #d9dee6;
 	--idpk-code-bg: #eef1f5;
@@ -18,9 +19,9 @@
 
 /* Dark mode (Starlight's default). */
 :root {
-	--sl-color-accent-low: #1e1a4d;
-	--sl-color-accent: #8b80ff;
-	--sl-color-accent-high: #d6d2ff;
+	--sl-color-accent-low: #13254a;
+	--sl-color-accent: #6aa1ff;
+	--sl-color-accent-high: #c9dcff;
 	--sl-color-white: #f2f4f8;
 	--sl-color-gray-1: #dfe3ea;
 	--sl-color-gray-2: #b8c0cc;
@@ -29,16 +30,16 @@
 	--sl-color-gray-5: #313a49;
 	--sl-color-gray-6: #1f2734;
 	--sl-color-black: #141a24;
-	--idpk-ready: #3cc4ae;
+	--idpk-ready: #42d085;
 	--idpk-progressing: #e3a948;
 	--idpk-line: #313a49;
 	--idpk-code-bg: #1f2734;
 }
 
 :root[data-theme='light'] {
-	--sl-color-accent-low: #e3e0fb;
-	--sl-color-accent: #4b3fc9;
-	--sl-color-accent-high: #2a2180;
+	--sl-color-accent-low: #dde9fe;
+	--sl-color-accent: #1d63db;
+	--sl-color-accent-high: #113f8c;
 	--sl-color-white: #1b2433;
 	--sl-color-gray-1: #273142;
 	--sl-color-gray-2: #3c4759;
@@ -48,7 +49,7 @@
 	--sl-color-gray-6: #eceff3;
 	--sl-color-gray-7: #f3f5f8;
 	--sl-color-black: #f7f8fa;
-	--idpk-ready: #0e7a6d;
+	--idpk-ready: #137a4a;
 	--idpk-progressing: #9a6412;
 	--idpk-line: #d9dee6;
 	--idpk-code-bg: #eef1f5;
