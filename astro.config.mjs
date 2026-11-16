@@ -45,6 +45,7 @@ export default defineConfig({
 						{ label: 'PostgresDatabase', slug: 'architecture/postgres-database' },
 						{ label: 'GitOps with Argo CD', slug: 'architecture/gitops' },
 						{ label: 'HTTPS on kind', slug: 'architecture/https' },
+						{ label: 'Single sign-on', slug: 'architecture/sso' },
 						{ label: 'Design decisions', slug: 'architecture/decisions' },
 					],
 				},

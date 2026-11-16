@@ -3,7 +3,7 @@ title: Roadmap
 description: What IdPlatformKit does today and the milestones ahead, from single sign-on to multi-cluster and AI platform services.
 ---
 
-Each milestone is a [`roadmap` issue](https://github.com/idPlatformKit/Orchestrator/issues?q=is%3Aissue%20label%3Aroadmap) in the Orchestrator repository. A milestone is marked done only once it's implemented and tested end to end.
+Each milestone is a [`roadmap` issue](https://github.com/idPlatformKit/Orchestrator/issues?q=is%3Aissue%20label%3Aroadmap) in the Orchestrator repository, or in the [portal](https://github.com/idPlatformKit/portal/issues?q=is%3Aissue%20label%3Aroadmap) for the portal's own work. A milestone is marked done only once it's implemented and tested end to end.
 
 ## Done
 
@@ -11,10 +11,12 @@ Each milestone is a [`roadmap` issue](https://github.com/idPlatformKit/Orchestra
 - **Secrets and databases.** Tenant secrets delivered as Kubernetes `Secret`s by External Secrets Operator, the New Postgres database template, and per-tenant database names on the shared server.
 - **HTTPS on kind** ([#27](https://github.com/idPlatformKit/Orchestrator/issues/27)). Gateway API with Envoy Gateway, cert-manager and a local CA, `https://<name>.127.0.0.1.nip.io` for the platform's UIs.
 - **Install on your own GitHub org** ([#45](https://github.com/idPlatformKit/Orchestrator/issues/45)). `make setup` and `make up`, with the portal running in the cluster. Verified end to end on a second org.
+- **Single sign-on with Dex** ([#28](https://github.com/idPlatformKit/Orchestrator/issues/28)). GitHub teams of the installation's org as groups for kubectl, Argo CD and OpenBao. See [Single sign-on](/architecture/sso/).
 
 ## Next
 
-- **Single sign-on with Dex** ([#28](https://github.com/idPlatformKit/Orchestrator/issues/28)), with GitHub teams as groups for kubectl, Argo CD, OpenBao and Grafana, and dedicated identities for CI, agents and break-glass access ([#29](https://github.com/idPlatformKit/Orchestrator/issues/29)).
+- **Non-human identities**: dedicated, scoped identities for CI, agents and break-glass access, instead of the shared admin credentials still in place ([#29](https://github.com/idPlatformKit/Orchestrator/issues/29)).
+- **The portal, made our own**: an IdPlatformKit theme reusing this site's identity ([portal#6](https://github.com/idPlatformKit/portal/issues/6)), and an admin page for `platform-admins` with Argo CD, OpenBao, Dex and the platform's health in one place ([portal#7](https://github.com/idPlatformKit/portal/issues/7)).
 - **Guardrails and observability**: Kyverno baseline policies for tenant namespaces ([#8](https://github.com/idPlatformKit/Orchestrator/issues/8)), a "new app" golden path ([#24](https://github.com/idPlatformKit/Orchestrator/issues/24)), a Grafana dashboard per tenant ([#25](https://github.com/idPlatformKit/Orchestrator/issues/25)).
 - **Day-2 operations**: update and delete tenants and databases from the portal, tenant tiers ([#30](https://github.com/idPlatformKit/Orchestrator/issues/30)), and governance on the claims repository ([#31](https://github.com/idPlatformKit/Orchestrator/issues/31)).
 - **The composition library as a product**: render tests, packaging and versioned APIs ([#32](https://github.com/idPlatformKit/Orchestrator/issues/32)).
