@@ -46,6 +46,7 @@ export default defineConfig({
 						{ label: 'GitOps with Argo CD', slug: 'architecture/gitops' },
 						{ label: 'HTTPS on kind', slug: 'architecture/https' },
 						{ label: 'Single sign-on', slug: 'architecture/sso' },
+						{ label: 'Who can do what', slug: 'architecture/access' },
 						{ label: 'Design decisions', slug: 'architecture/decisions' },
 					],
 				},
