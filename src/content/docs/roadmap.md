@@ -12,10 +12,10 @@ Each milestone is a [`roadmap` issue](https://github.com/idPlatformKit/Orchestra
 - **HTTPS on kind** ([#27](https://github.com/idPlatformKit/Orchestrator/issues/27)). Gateway API with Envoy Gateway, cert-manager and a local CA, `https://<name>.127.0.0.1.nip.io` for the platform's UIs.
 - **Install on your own GitHub org** ([#45](https://github.com/idPlatformKit/Orchestrator/issues/45)). `make setup` and `make up`, with the portal running in the cluster. Verified end to end on a second org.
 - **Single sign-on with Dex** ([#28](https://github.com/idPlatformKit/Orchestrator/issues/28)). GitHub teams of the installation's org as groups for kubectl, Argo CD and OpenBao. See [Single sign-on](/architecture/sso/).
+- **Dedicated identities** ([#29](https://github.com/idPlatformKit/Orchestrator/issues/29)). Read-only, expiring identities for the portal, agents and CI (GitHub Actions OIDC, no stored kubeconfig), and an audited, one-hour break-glass. See [Who can do what](/architecture/access/).
 
 ## Next
 
-- **Non-human identities**: dedicated, scoped identities for CI, agents and break-glass access, instead of the shared admin credentials still in place ([#29](https://github.com/idPlatformKit/Orchestrator/issues/29)).
 - **The portal, made our own**: an IdPlatformKit theme reusing this site's identity ([portal#6](https://github.com/idPlatformKit/portal/issues/6)), and an admin page for `platform-admins` with Argo CD, OpenBao, Dex and the platform's health in one place ([portal#7](https://github.com/idPlatformKit/portal/issues/7)).
 - **Guardrails and observability**: Kyverno baseline policies for tenant namespaces ([#8](https://github.com/idPlatformKit/Orchestrator/issues/8)), a "new app" golden path ([#24](https://github.com/idPlatformKit/Orchestrator/issues/24)), a Grafana dashboard per tenant ([#25](https://github.com/idPlatformKit/Orchestrator/issues/25)).
 - **Day-2 operations**: update and delete tenants and databases from the portal, tenant tiers ([#30](https://github.com/idPlatformKit/Orchestrator/issues/30)), and governance on the claims repository ([#31](https://github.com/idPlatformKit/Orchestrator/issues/31)).
