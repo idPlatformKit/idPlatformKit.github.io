@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <!-- A claim (left block) expanding into the resources it composes (right blocks). -->
-  <rect x="3" y="9" width="10" height="14" rx="2" fill="#4B3FC9"/>
-  <path d="M13 16h4M17 9.5v13" stroke="#4B3FC9" stroke-width="2"/>
-  <rect x="19" y="6" width="10" height="6" rx="1.5" fill="#0E7A6D"/>
-  <rect x="19" y="13" width="10" height="6" rx="1.5" fill="#0E7A6D" opacity=".75"/>
-  <rect x="19" y="20" width="10" height="6" rx="1.5" fill="#0E7A6D" opacity=".5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 0 148 148" fill="none">
+  <!-- IdPlatformKit's mark (the org's avatar): two blue blocks over a block split green and ink. -->
+  <style>.ink{fill:#111112}@media (prefers-color-scheme:dark){.ink{fill:#f2f4f8}}</style>
+  <rect x="0" y="0" width="55" height="55" rx="2" fill="#2574F8"/>
+  <rect x="65" y="0" width="55" height="55" rx="2" fill="#2574F8"/>
+  <rect x="0" y="64" width="120" height="83" rx="2" fill="#42D085"/>
+  <path class="ink" d="M120 64v81a2 2 0 0 1-2 2H38z"/>
 </svg>

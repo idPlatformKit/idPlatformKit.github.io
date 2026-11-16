@@ -12,7 +12,7 @@ export default defineConfig({
 			title: 'IdPlatformKit',
 			description:
 				'A reference Internal Developer Platform you can run on your laptop: Backstage, Argo CD, Crossplane v2, OpenBao, Envoy Gateway.',
-			logo: { src: './src/assets/logo.svg', replacesTitle: false },
+			logo: { light: './src/assets/logo-light.svg', dark: './src/assets/logo-dark.svg', replacesTitle: false },
 			favicon: '/favicon.svg',
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/idPlatformKit' },
