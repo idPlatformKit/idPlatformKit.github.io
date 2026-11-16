@@ -13,7 +13,8 @@ It's a **reference implementation**: the point is to be read, run and reused, no
 - **Its own secrets space**, optional: a dedicated OpenBao namespace that only the tenant's ServiceAccount can log in to, with secrets delivered as Kubernetes `Secret`s by External Secrets Operator. Cross-tenant access is refused by OpenBao itself, and that was tested.
 - **Postgres databases**, as many as needed, on a shared server, with credentials in a `Secret`.
 - **A view of all of it** in the portal: each tenant and database is a catalog entity, with a Kubernetes tab listing the resources behind it.
-- **HTTPS** for the platform's own UIs (OpenBao, Argo CD), with a local CA.
+- **Access through its GitHub team**, with single sign-on: `edit` on its namespaces with kubectl, its secrets in OpenBao's UI, read access in Argo CD. No shared admin token.
+- **HTTPS** for the platform's own UIs (portal, Argo CD, OpenBao), with a local CA.
 
 ## The repositories
 

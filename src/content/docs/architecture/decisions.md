@@ -40,6 +40,6 @@ Both implement Gateway API, the Kubernetes standard that replaces Ingress (ingre
 
 `*.127.0.0.1.nip.io` needs no domain, DNS account or token, so anyone who clones the project gets the same URLs. A real domain with Let's Encrypt would avoid trusting a local CA, at the cost of reproducibility. The CA is generated on the host, not in the cluster, so it's trusted once per machine rather than once per cluster.
 
-## Dex rather than Keycloak, for single sign-on (planned)
+## Dex rather than Keycloak, for single sign-on
 
-The goal is to use the GitHub org's teams as groups everywhere: kubectl, Argo CD, OpenBao, Grafana. Dex passes GitHub teams through as groups; Keycloak doesn't import them. This is the next milestone, not built yet.
+The goal is to use the GitHub org's teams as groups everywhere: kubectl, Argo CD, OpenBao, later Grafana. Dex passes GitHub teams through as groups; Keycloak doesn't import them, so it would have brought a second source of groups. Built and verified: see [Single sign-on](/architecture/sso/).
